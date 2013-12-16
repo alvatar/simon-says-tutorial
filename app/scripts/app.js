@@ -1,23 +1,29 @@
 /*global define */
 define([], function () {
-    'use strict';
+    'use strict'
+
     var highlight = function(button, color) {
       var oldColor = button.css("background-color")
-      button.css("background-color", color)
-      setTimeout(function() {
+      //button.css("background-color", color)
+      /* setTimeout(function() {
          button.css("background-color", oldColor)
-      }, 200)
-/*
-      var oldColor = button.css("background-color")
-      button.css("background-color", color)
-            .delay(200)
+      }, 200) */
+      button.css("background-color", color).dequeue()
+            .delay(300)
             .queue( function() {
                     button.css("background-color", oldColor).dequeue()
                   })
-      setTimeout(function() {
-        button.css("background-color", oldColor)
-      }, 100);
-*/
+    }
+
+    var showSequence = function(seq) {
+       for(var id in seq) {
+          //highlight($("#"+seq[id]), "#fff", 600*id)
+          (function(id){
+            setTimeout( function() {
+              highlight($("#"+seq[id]), "#fff")
+            }, 600*id)
+          })(id)
+       }
     }
     
     var userClicks = new Array()
@@ -34,6 +40,8 @@ define([], function () {
                                       Math.floor(Math.random()
                                         * buttonList.length)] )
              console.log(computerSequence)
+             showSequence( computerSequence )
+             /*
              var thisId = $(this).attr('id')
              if(thisId === buttonList[0]) {
                userClicks.push(thisId)
@@ -50,6 +58,7 @@ define([], function () {
              } else {
                console.log("Wrong button ID detected")
              }
+             */
              //console.log(userClicks)
         })
     })
