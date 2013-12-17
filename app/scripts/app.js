@@ -24,13 +24,36 @@ define([], function () {
             }, 600*id)
           })(id)
        }
+       setTimeout( function() {
+           userPlaying = true
+       }, 600*seq.length)
     }
     
+    var userPlaying = false
     var userClicks = new Array()
     var buttonList
     var computerSequence = new Array()
     
     $(document).ready(function() {
+        //initialize()
+
+        //generateComputerSequence()
+        //showComputerSequence()
+
+        $('.button').click( function() {
+            if(userPlaying) {
+                // código de user sequence
+            }
+        } )
+
+            userSequence()
+            if (!compareSequences()){
+                break
+            }
+        }
+
+        endGame()
+/*
         buttonList = jQuery.map( $(".button"),
                        function(element) {
                          return $(element).attr('id')
@@ -41,7 +64,7 @@ define([], function () {
                                         * buttonList.length)] )
              console.log(computerSequence)
              showSequence( computerSequence )
-             /*
+
              var thisId = $(this).attr('id')
              if(thisId === buttonList[0]) {
                userClicks.push(thisId)
@@ -58,9 +81,9 @@ define([], function () {
              } else {
                console.log("Wrong button ID detected")
              }
-             */
              //console.log(userClicks)
         })
+*/
     })
     return "<============== OK";
 
