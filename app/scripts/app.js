@@ -67,17 +67,16 @@ define([], function () {
 
                 if (userClicks.length >= computerSequence.length) {
                     userPlaying = false
-                    if (!compareSequences()){
-                        // endGame
+                    if (compareSequences()){
+                        userClicks.length = 0
+                        setTimeout(function() {
+                            generateComputerSequence()
+                            showComputerSequence()
+                        }, 1000)
+                    } else {
+                        endGame()
                     }
-                    userClicks.length = 0
-                    setTimeout(function() {
-                        generateComputerSequence()
-                        showComputerSequence()
-                    }, 1000)
                 }
-
-
             }
         })
     })
