@@ -50,14 +50,18 @@ define([], function () {
     }
 
     var endGame = function() {
-        // TODO
     }
     
     $(document).ready(function() {
         initialize()
 
-        generateComputerSequence()
-        showComputerSequence()
+        $('#start-button').click(function() {
+            $(this).css('color', '#fff').fadeOut()
+            setTimeout( function() {
+                generateComputerSequence()
+                showComputerSequence()
+            }, 500)
+        })
 
         $('.button').click( function() {
             if(userPlaying) {
