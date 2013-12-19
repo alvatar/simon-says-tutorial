@@ -45,11 +45,22 @@ define([], function () {
     }
 
     var compareSequences = function() {
-        // TODO
+        for(var i in userClicks) {
+            if(computerSequence[i] !== userClicks[i]) return false
+        }
         return true
     }
 
     var endGame = function() {
+        var response = confirm("HORROR. Restart?")
+        if (response) {
+            userClicks.length = 0
+            computerSequence.length = 0
+            setTimeout( function() {
+                generateComputerSequence()
+                showComputerSequence()
+            }, 2000)
+        }
     }
     
     $(document).ready(function() {
@@ -69,17 +80,17 @@ define([], function () {
                 highlight($(this), "#fff")
                 userClicks.push(thisId)
 
+                if (!compareSequences()) {
+                    userPlaying = false
+                    endGame()
+                }
                 if (userClicks.length >= computerSequence.length) {
                     userPlaying = false
-                    if (compareSequences()){
-                        userClicks.length = 0
-                        setTimeout(function() {
-                            generateComputerSequence()
-                            showComputerSequence()
-                        }, 1000)
-                    } else {
-                        endGame()
-                    }
+                    userClicks.length = 0
+                    setTimeout(function() {
+                        generateComputerSequence()
+                        showComputerSequence()
+                    }, 1000)
                 }
             }
         })
