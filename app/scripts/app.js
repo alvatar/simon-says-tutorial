@@ -95,8 +95,7 @@ define([], function () {
             }
         })
     })
+return computerSequence
     return "<============== OK";
-
-    return '\'Allo \'Allo!';
 });
 
